@@ -1,0 +1,277 @@
+{% extends "_base.html" %}
+
+<!-- Django tags -->
+{% load static %}
+{% load i18n %}
+
+<!-- Django tags -->
+
+
+{% block title %}
+
+    {% trans "shop" %}
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="breadcumb_top_area" style="background-image: url({% static "images/contact_bg.jpg"%})">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="bread_top_box">
+                        <h2>{% trans "Shop" %}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="breadcumb_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="bread_box">
+                        <ul class="breadcumb">
+                            <li><a href="{% url "pages:home" %}">{% trans "home" %} <span>|</span></a></li>
+                            <li><a href="{% url "product:product_list" %}">{% trans "Shop" %} <span>|</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-8 col-xs-12">
+                    <div class="filter_box_left">
+                        <p>{% trans "FILTERING:"%}</p>
+                        <div class="filter_cont">
+                            <ul>
+                                <li><a href="category-1.html">{% trans "on" %}</a></li>
+                                <li><img src="{% static "images/filter_ico.png"%}" alt="" /></li>
+                                <li><a href="category-2.html">{% trans "off" %}</a></li>
+                            </ul>
+                        </div>
+                        <div class="s_results">
+                            <p><span>|</span> {% trans "showing of" %} {{ product|length }} {% trans "results" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-4 col-xs-12">
+                    <div class="filter_box_right">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans "sort by newness"%} </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Top Seller </a></li>
+                            <li><a href="#">Most Popular</a></li>
+                            <li><a href="#">Alphabetically</a></li>                        
+                            <li><a href="#">Older First</a></li>                        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="main_category_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="main_category_left">
+                    
+                        <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
+                        {% comment %} 
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#home-accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                    {% trans "CATEGORIES" %}
+                                    <span class="floatright"><i class="fa fa-plus"></i></span>
+                                    </a>
+                                </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <ul id="c_tab1">
+                                        <li><a href="">Blazers  (12)</a></li>
+                                        <li><a href="">Pants & Trousers  (54)</a></li>
+                                        <li><a href="">Shirts  (105)</a></li>
+                                        <li><a href="">Suits & Tailors  (48)</a></li>
+                                        <li><a href="">T-shirts  (120)</a></li>
+                                        <li><a href="">Underwear  (12)</a></li>
+                                        <li><a href="">Jackets & Coats (12)</a></li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+                        {% endcomment %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
+                                {% trans "PRICE  FILTER"%}
+                                <span class="floatright"><i class="fa fa-plus"></i></span>
+                                </a>
+                            </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" >
+                            <div class="panel-body">
+                                <div id="slider-range"></div>
+                                    <div class="cat_filter_box">
+                                        <p>
+                                        <label for="amount">{% trans "Filter" %}</label>
+                                        <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;">
+                                        </p>
+                                    </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                {% trans "COLORS" %}
+                                <span class="floatright"><i class="fa fa-plus"></i></span>
+                                </a>
+                            </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body colors_cat">
+                                <ul id="cat_color">
+                                    <li><a class="col-1" href=""></a></li>
+                                    <li><a class="col-2" href=""></a></li>
+                                    <li><a class="col-3" href=""></a></li>
+                                    <li><a class="col-4" href=""></a></li>
+                                    <li><a class="col-5" href=""></a></li>
+                                    <li><a class="col-6" href=""></a></li>
+                                    <li><a class="col-7" href=""></a></li>
+                                    <li><a class="col-8" href=""></a></li>
+                                    <li><a class="col-9" href=""></a></li>
+                                    <li><a class="col-10" href=""></a></li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFour">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                {% trans "size" %}
+                                <span class="floatright"><i class="fa fa-plus"></i></span>
+                                </a>
+                            </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <div class="panel-body">
+                                <ul id="cat_size">
+                                    <li><a href="">xs</a></li>
+                                    <li><a href="">s</a></li>
+                                    <li><a href="">m</a></li>
+                                    <li><a href="">l</a></li>
+                                    <li><a href="">xl</a></li>
+                                    <li><a href="">xxl</a></li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFive">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    {% trans "Brands" %}
+                                <span class="floatright"><i class="fa fa-plus"></i></span>
+                                </a>
+                            </h4>
+                            </div>
+                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                            <div class="panel-body">
+                                <ul id="c_tab2">
+                                    <li><a href="">Tom tailor  (72)</a></li>
+                                    <li><a href="">incult  (14)</a></li>
+                                    <li><a href="">jack & jones  (23)</a></li>
+                                    <li><a href="">locomotive  (62)</a></li>
+                                    <li><a href="">river island  (19)</a></li>
+                                    <li><a href="">Steve madden  (37)</a></li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <div class="main_category_right">
+                        <div class="row">
+                            {% for product in products %}
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="main_cat_item">
+                                        <div class="item">
+                                            <div class="item-img">
+                                                <img src="{{ product.image.url }}" alt="" />
+                                                <div class="tr-add-cart">
+                                                    <ul>
+                                                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                                                        <li><a class="tr_text" href="#">{% trans "ADD TO CART" %}</a></li>
+                                                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                                        <li><a class="fa fa-search tr_search" href="{{ product.get_absolute_url }}"></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% if product.discount %}
+                                                <div class="item-new">
+                                                    <p>{% trans "New" %}</p>
+                                                    <span>{{ product.discount }}%</span>
+                                                </div>
+                                                <div class="item-sub">
+                                                    <a href="{{ product.get_absolute_url }}"><h5>{{ product.name }}</h5></a>
+                                                    <p>{% trans "$" %} {{ product.total_price }} <span><del>{% trans "$" %} {{ product.price}}</del></span></p>
+                                                </div>
+                                            {% else %}
+                                                <div class="item-sub">
+                                                    <a href="{{ product.get_absolute_url }}"><h5>{{ product.name }}</h5></a>
+                                                    <p>{% trans "$" %} {{ product.price}}</p>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="pagi_line"></div>
+                                <div class="pagi_ul">
+                                    <ul id="pagination">
+                                        <li><a href="">{% trans "Previous" %}</a></li>
+                                        <li><a href="">1</a></li>
+                                        <li><a href="">2</a></li>
+                                        <li><a href="">3</a></li>
+                                        <li><a href="">4</a></li>
+                                        <li><a href="">5 ...</a></li>
+                                        <li><a href="">{% trans "Next" %}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(function() {
+          $( "#slider-range" ).slider({
+            range: true,
+            min: 150,
+            max: 1500,
+            values: [ 520, 1100 ],
+            slide: function( event, ui ) {
+              $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            }
+          });
+          $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+            " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+        });
+    </script>
+
+{% endblock %}

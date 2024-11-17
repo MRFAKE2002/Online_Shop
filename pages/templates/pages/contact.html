@@ -1,0 +1,136 @@
+{% extends '_base.html' %}
+
+<!-- Django template tags -->
+{% load static %}
+{% load i18n %}
+
+<!-- My template tags -->
+
+{% block title %}
+
+    {% trans "home" %}
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="contact_banner_area" style="background-image: url({% static "images/contact_bg.jpg"%})">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="contact_banner">
+                        <h2>contact</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="breadcumb_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="bread_box">
+                        <ul class="breadcumb">
+                            <li><a href="index.html">home <span>|</span></a></li>
+                            <li><a href="">Pgaes <span>|</span></a></li>
+                            <li class="active"><a href="">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact_p_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="contact_box_left">
+                        <h4>Leave A message</h4>
+                        <div class="multi_line"></div>
+                    </div>
+                    <form action="contact_process.php" method="post">
+                        <div class="input_form">
+                            <div class="input_left">
+                                <input type="text" placeholder="Name *" required name="name"/>
+                                <input  type="text" placeholder="Your Email *" required name="email"/>
+                                <input  type="text" placeholder="Phone *" required name="phone"/>
+                            </div>
+                            <div class="input_right">
+                                <textarea name="message" placeholder="Message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="submit_btn form-group submitRow">
+                            <input type="submit" name="submit" value="Submit form" />
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="contact_box_right">
+                        <h5>Address</h5>
+                        <p>44 new Design Street, Melbourne 005 <br>Australia 300</p>
+                        <div class="dotted_line"></div>
+                        
+                        <h5>Contact info</h5>
+                        <p>Info@Example.com</p>
+                        <a href="tel:01(800)433633">01 (800) 433 633</a>
+                        <div class="dotted_line"></div>
+                        
+                        <h5>Working hours</h5>
+                        <p>Daily 10.00 to 22.00    ( Sunday Avilable ) </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maps" class="maps_area">
+        <div class="maps_box wow fadeIn">
+            <h2 style="display: inline;">Maps</h2>
+            <div id="googleMap" style="width:100%;height:450px;"></div>
+        </div>
+    </section>
+
+    <!-- JS Files -->
+
+    <script>
+		function initialize() {
+		  var mapOptions = {
+			zoom: 15,
+			scrollwheel: false,
+			center: new google.maps.LatLng(40.663293, -73.956351)
+		  };
+
+		  var map = new google.maps.Map(document.getElementById('googleMap'),
+			  mapOptions);
+
+
+		  var marker = new google.maps.Marker({
+			position: map.getCenter(),
+			animation:google.maps.Animation.BOUNCE,
+			icon: 'images/map-marker.png',
+			map: map
+		  });
+
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+	  $(function() {
+		$( "#slider-range" ).slider({
+		  range: true,
+		  min: 150,
+		  max: 1500,
+		  values: [ 520, 1100 ],
+		  slide: function( event, ui ) {
+			$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		  }
+		});
+		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+		  " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	  });
+	</script>
+
+{% endblock %}

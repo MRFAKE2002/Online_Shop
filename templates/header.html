@@ -1,0 +1,275 @@
+{% load static %}
+{% load i18n %}
+
+<div class="header_top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="header_top_left">
+                    <img src="{% static "images/car.png"%}" alt="Header Car Icon" />
+                    <p>{% trans "get free! shipping on order over" %} <span>$100</span></p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="header_top_right floatright">
+                    <p><a href="">{% trans "login" %}</a> / <a href="">{% trans "register" %}</a></p>
+                    <nav class="currency alignleft">
+                        <ul>
+                            <li><a href="">USD</a>
+                                <ul class="currency-dropdown">
+                                    <li><a href="">EUR</a></li>
+                                    <li><a href="">GBP</a></li>
+                                    <li><a href="">CAD</a></li>
+                                    <li><a href="">AUD</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="top-flag alignleft">
+                        <img src="{% static "images/flag.png"%}" alt="Flags" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <form method="post" action="{% url "product:search" %}">
+                {% csrf_token %}
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="header_left floatleft">
+                        <a class="fa fa-search" href=""></a>
+                        <input type="text" name="search" placeholder="{% trans "search" %}"/>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-6 col-sm-5 col-xs-12">
+                <div class="header_center">
+                    <a href="index.html"><img src="{% static "images/logo.png"%}" alt="Site Logo" /></a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="header_right floatright">
+                    <ul class="checkout">
+                        <li><a href="checkout.html"><i class="fa fa-heart-o"></i>{% trans "wishlist"%}</a></li>
+                        <li class="mobi_right_li"><a href="checkout.html"><i class="fa fa-shopping-cart"></i>{% trans "checklist"%}</a></li>
+                    </ul>
+                    <div class="w_likes">
+                        <span>3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="nav_area">
+    <div class="container">
+    <div class="nav_left floatleft">
+        <a href="#">{% trans "category" %}<i class="fa fa-bars"></i></a>
+        <ul id="sub-menu3">
+            {% for category in categories %}
+                <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                    <ul id="sub-menu2">
+                        {% for item in category.parent_category.all %}
+                            <li><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="nav_center">
+        <nav class="mainmenu">
+            <ul id="nav">
+                <li
+                    ><a href="{% url "pages:home" %}">{% trans "Home" %}</a>
+                </li>
+                <li>
+                    <a href="{% url "product:product_list" %}">{% trans "shop" %}</a>
+                </li>
+                {% comment %} 
+                    <li><a href="category-1.html">accessories</a>
+                        <ul id="sub-menu">
+                            <li><a href="">check shirts</a></li>
+                            <li><a href="">denim shirts</a></li>
+                            <li><a href="">long sleeve shirts</a></li>
+                            <li><a href="">plain shirts</a></li>
+                            <li><a href="">printed shirts</a></li>
+                            <li><a href="">short sleeve shirts</a></li>
+                            <li class="last-child"><a href="">shortsleeve denim shirts</a></li>
+                        </ul>
+                    </li> 
+                {% endcomment %}
+                <li><a href="{% url "pages:contact" %}">{% trans "Contact page"%}</a></li>
+                {% comment %} 
+                    <li><a href="#">{% trans "pages" %}</a>
+                        <ul id="sub-menu5">
+                            <li><a href="category-1.html">Shop Page With Filter</a></li>
+                            <li><a href="category-2.html">Shop Page Without Filter</a></li>
+                            <li><a href="checkout.html">Checkout page</a></li>
+                            <li><a href="cart.html">Cart page</a></li>
+                            <li><a href="single-blog.html">Blog single</a></li>
+                            <li><a href="contact.html">Contact page</a></li>
+                            <li><a href="404.html">404 page</a></li>
+                        </ul>
+                    </li> 
+                {% endcomment %}
+                <li><a href="blog.html">{% trans "Blog"%}</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="nav_right floatright">
+        <a href="cart.html"><img src="{% static "images/bag.png"%}" alt="Bag" />{% trans "cart:" %} 2 {% trans "items" %}</a>
+        <div class="cart_menu">
+            <div class="cart_items">
+                <div class="c_item_img floatleft">
+                    <a href="product-detail.html"><img src="{% static "images/c_item1.jpg"%}" alt="" /></a>
+                </div>
+                <div class="c_item_totals floatleft">
+                    <div class="c_item_totals_detail floatleft">
+                        <a href="product-detail.html"><h5>men’s fashion blue jean coat</h5></a>
+                        <span>2 x $ 130.00</span>
+                    </div>
+                    <div class="close_icon_cart floatleft">
+                        <img src="{% static "images/close.png"%}" alt="" />
+                    </div>
+                </div>
+            </div>
+            <div class="cart_totals">
+                <div class="c_totals_left floatleft">
+                    <p>{% trans "Free shipping" %}</p>
+                </div>
+                <div class="c_totals_right floatleft">
+                    <p>{% trans "total" %}   {% trans "$" %}350</p>
+                </div>
+            </div>
+            <div class="cart_view_bottom">
+                <div class="c_totals_left floatleft">
+                    <a href="cart.html">{% trans "View Cart" %}</a>
+                </div>
+                <div class="c_totals_right floatleft">
+                    <a href="checkout.html">{% trans "Check Out" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+        <!-- MOBILE ONLY CONTENT -->
+        <div class="only-for-mobile">
+            <ul class="ofm">
+                <li class="m_nav"><i class="fa fa-bars"></i> Navigation</li>
+            </ul>
+
+            <!-- MOBILE MENU -->
+            <div class="mobi-menu">
+                <div id='cssmenu'>
+                    <ul>
+                        <li class='has-sub'>
+                            <a href='index.html'><span>Home</span></a>
+                            <ul class="sub-nav">
+                                <li><a href="index.html"><span>Home 1</span></a></li>
+                                <li><a href="index-2.html"><span>Home 2</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li class='has-sub'>
+                            <a href='category-1.html'><span>category</span></a>
+                            <ul>
+                                <li class='has-sub'>
+                                    <a href='#'><span>Shirts</span></a>
+                                    <ul>
+                                        <li><a href="#"><span>check shirts</span></a></li>
+                                        <li><a href="#"><span>denim shirts</span></a></li>
+                                        <li><a href="#"><span>long sleeve shirts</span></a></li>
+                                        <li><a href="#"><span>denim shirts</span></a></li>
+                                        <li class="last"><a href="./#"><span>long sleeve shirts</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'>
+                                    <a href='#'><span>T Shirts</span></a>
+                                    <ul>
+                                        <li><a href="#"><span>plain T-shirt</span></a></li>
+                                        <li><a href="#"><span>printed T-shirt</span></a></li>
+                                        <li><a href="#"><span>sports T-shirt</span></a></li>
+                                        <li><a href="#"><span>striped T-shirt</span></a></li>
+                                        <li class='last'><a href="#"><span>V-Neck T-Shirt</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'>
+                                    <a href='#'><span>trousers fit</span></a>
+                                    <ul>
+                                        <li><a href="#"><span>flexible waist</span></a></li>
+                                        <li><a href="#"><span>regular fit</span></a></li>
+                                        <li><a href="#"><span>slim fit</span></a></li>
+                                        <li><a href="#"><span>tailored fit</span></a></li>
+                                        <li class='last'><a href="#"><span>tight fit</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="img-nav">
+                                    <div class="container">
+                                        <div class="clearfix"></div>
+                                        <div class="space20"></div>
+                                        <div class="clearfix"></div>
+                                        <div class="row in1">
+                                            <div class="col-md-6">
+                                                <a href="#"><img src="{% static "images/menu_cat.png"%}" class="img-responsive" alt=""/></a>
+                                            </div>
+                                            <div class="col-md-6">
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="space20"></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="space20"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='category-2.html'><span>shop</span></a>
+                        </li>
+                        <li class='has-sub'>
+                            <a href='category-1.html'><span>accessories</span></a>
+                            <ul class="sub-nav">
+                                <li><a href="#"><span>check shirts</span></a></li>
+                                <li><a href="#"><span>denim shirts</span></a></li>
+                                <li><a href="#"><span>long sleeve shirts</span></a></li>
+                                <li><a href="#"><span>plain shirts</span></a></li>
+                                <li><a href="#"><span>printed shirts</span></a></li>
+                                <li><a href="#"><span>short sleeve shirts</span></a></li>
+                                <li><a href="#"><span>shortsleeve denim shirts</span></a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'>
+                            <a href='#'><span>pages</span></a>
+                            <ul id="sub-nav">
+                                <li><a href="category-1.html">Category page</a></li>
+                                <li><a href="category-2.html">Category page without filter</a></li>
+                                <li><a href="checkout.html">Checkout page</a></li>
+                                <li><a href="cart.html">Cart page</a></li>
+                                <li><a href="product-detail.html">Product detail page</a></li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="single-blog.html">Blog single</a></li>
+                                <li><a href="contact.html">Contact page</a></li>
+                                <li><a href="404.html">404 page</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='blog.html'><span>Blog</span></a>
+                        </li>
+                        <li>
+                            <a href='cart.html'><span>cart</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- MOBILE ONLY CONTENT -->
+
+    </div>
+</div>
